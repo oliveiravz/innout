@@ -21,7 +21,7 @@ class Login extends Model {
         $this->validate();
         $user = User::getOne(['email' => $this->email]);
         if($user) {
-            if($user->end_date) {
+            if($user->end_date || $user->deleted_at) {
                 throw new AppException('Usuário está desligado da empresa.');
             }
 

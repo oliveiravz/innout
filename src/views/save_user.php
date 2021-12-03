@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="form-group row mt-4">
-            <div class="form-group col-md-6">
+            <div class="col-md-6 datepicker">
                 <label for="start_date">Data de Admissão</label>
                 <input type="date" id="start_date" name="start_date"
                     class="form-control <?= $errors['start_date'] ? 'is-invalid' : '' ?>"
@@ -68,7 +68,7 @@
                     <?= $errors['start_date'] ?>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 form-ouline datepicker">
                 <label for="end_date">Data de Desligamento</label>
                 <input type="date" id="end_date" name="end_date"
                     class="form-control <?= $errors['end_date'] ? 'is-invalid' : '' ?>"

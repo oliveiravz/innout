@@ -33,10 +33,12 @@ function loadTemplateView($viewName, $params = array()) {
     $exitTime = $workingHours->getExitTime()->format('H:i:s');
     $activeClock = $workingHours->getActiveClock();
 
-    require_once(TEMPLATE_PATH . "/header.php");
-    require_once(TEMPLATE_PATH . "/left.php");
-    require_once(VIEW_PATH . "/{$viewName}.php");
-    require_once(TEMPLATE_PATH . "/footer.php");
+    if($viewName != 'forget_password') {
+        require_once(TEMPLATE_PATH . "/header.php");
+        require_once(TEMPLATE_PATH . "/left.php");
+        require_once(VIEW_PATH . "/{$viewName}.php");
+        require_once(TEMPLATE_PATH . "/footer.php");
+    }
 }
 
 function renderTitle($title, $subtitle, $icon = null) {

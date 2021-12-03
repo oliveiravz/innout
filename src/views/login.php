@@ -49,6 +49,9 @@
             <div class="card-footer">
                 <button class="btn btn-success btn-lg btn-block">Entrar</button>
             </div>
+            <div class="forget">
+                <a href="forget_password.php">Esqueceu a senha?</a>
+            </div>
         </div>
     </form>
 

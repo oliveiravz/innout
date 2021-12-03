@@ -17,6 +17,7 @@ class Model {
                 if($sanitize && isset($cleanValue)) {
                     $cleanValue = strip_tags(trim($cleanValue));
                     $cleanValue = htmlentities($cleanValue, ENT_NOQUOTES);
+                    $cleanValue = html_entity_decode($cleanValue);
                     // $cleanValue = mysqli_real_escape_string($conn, $cleanValue);
                 }
                 $this->$key = $cleanValue;
@@ -68,12 +69,13 @@ class Model {
     }
 
     public function insert() {
-        $sql = "INSERT INTO " . static::$tableName . " ("
-            . implode(",", static::$columns) . ") VALUES (";
+        $sql = "INSERT INTO " . static::$tableName . " (" . implode(",", static::$columns) . ") VALUES (";
         foreach(static::$columns as $col) {
             $sql .= static::getFormatedValue($this->$col) . ",";
         }
         $sql[strlen($sql) - 1] = ')';
+        // echo $sql;
+        // die();
         $id = Database::executeSQL($sql);
         $this->id = $id;
     }
@@ -119,7 +121,7 @@ class Model {
     }
 
     private static function getFormatedValue($value) {
-        if(is_null($value)) {
+        if(is_null($value) || $value === '') {
             return "null";
         } elseif(gettype($value) === 'string') {
             return "'${value}'";

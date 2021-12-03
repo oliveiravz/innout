@@ -14,15 +14,23 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         $dbUser = new User($_POST);
         if($dbUser->id) {
             $dbUser->update();
-            addSuccessMsg('Usuário alterado com sucesso!');
+            addSuccessMsg('Usuário Alterado com sucesso!!');
             header('Location: users.php');
             exit();
         } else {
-            $dbUser->insert();
-            addSuccessMsg('Usuário cadastrado com sucesso!');
+            try {
+                $dbUser->insert();
+                addSuccessMsg('Usuário Cadastrado com sucesso!!');
+            }catch (Exception $e) {
+                if(strpos($e->getMessage(), "for key 'users.email'")) {
+                    addErrorMsg('E-mail já cadastrado');
+                } else {
+                    $exception = $e;
+                }
+            }
         }
         $_POST = [];
-    } catch(Exception $e) {
+    }catch(Exception $e) {
         $exception = $e;
     } finally {
         $userData = $_POST;

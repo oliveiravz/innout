@@ -3,11 +3,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #DDD;
+    background-color: #4772E1;
 }
 
 .form-login {
     flex-basis: 450px;
+}
+
+.login-card {
+    border-radius: 1.2rem;
 }
 
 .login-card .card-header {
@@ -19,5 +23,16 @@ body {
 
 .login-card .card-footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
+}
+
+.login-card .card-footer > button {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card-footer a {
+    text-decoration: none;
+    justify-content: center;
+    
 }

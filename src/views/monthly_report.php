@@ -10,7 +10,7 @@
 		<form class="mb-4" action="#" method="post">
 			<div class="input-group">
 				<?php if($user->is_admin): ?>
-					<select name="user" class="form-control mr-2" placeholder="Selecione o usuário...">
+					<select name="user" class="form-control me-2" placeholder="Selecione o usuário...">
 						<option value="">Selecione o usuário</option>
 						<?php
 							foreach($users as $user) {

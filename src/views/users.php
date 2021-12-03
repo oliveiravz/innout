@@ -21,14 +21,15 @@
             <th>Ações</th>
         </thead>
         <tbody>
-            <?php foreach($users as $user): ?>
-                <tr>
-                    <td><?= $user->name ?></td>
-                    <td><?= $user->email ?></td>
-                    <td><?= $user->start_date ?></td>
-                    <td><?= $user->end_date ?></td>
-                    <td>
-                        <a href="save_user.php?update=<?= $user->id ?>" 
+            <?php foreach($users as $user) { ?>
+                <?php if(!$user->deleted_at) { ?>
+                    <tr>
+                        <td><?= $user->name ?></td>
+                        <td><?= $user->email ?></td>
+                        <td><?= $user->start_date ?></td>
+                        <td><?= $user->end_date ?></td>
+                        <td>
+                            <a href="save_user.php?update=<?= $user->id ?>" 
                             class="btn btn-warning rounded-circle mr-2">
                             <i class="icofont-edit"></i>
                         </a>
@@ -37,7 +38,8 @@
                         </a>
                     </td>
                 </tr>
-            <?php endforeach ?>
+                <?php } ?>
+            <?php } ?>
         </tbody>
     </table>
 </main>

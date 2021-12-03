@@ -69,13 +69,11 @@ class Model {
     }
 
     public function insert() {
-        $sql = "INSERT INTO " . static::$tableName . " (" . implode(",", static::$columns) . ") VALUES (";
+        $sql = "INSERT INTO " . static::$tableName . " (" . implode(",", static::$columns) . ") VALUES ("; 
         foreach(static::$columns as $col) {
             $sql .= static::getFormatedValue($this->$col) . ",";
         }
         $sql[strlen($sql) - 1] = ')';
-        // echo $sql;
-        // die();
         $id = Database::executeSQL($sql);
         $this->id = $id;
     }
@@ -86,7 +84,7 @@ class Model {
             $sql .= " ${col} = " . static::getFormatedValue($this->$col) . ",";
         }
         $sql[strlen($sql) - 1] = ' ';
-        $sql .= "WHERE id = {$this->id}";
+        $sql .= "WHERE id = {$this->id} AND deleted_at IS NULL";
         Database::executeSQL($sql);
     }
 
@@ -100,8 +98,8 @@ class Model {
         static::deleteById($this->id);
     }
 
-    public static function deleteById($id) {
-        $sql = "DELETE FROM " . static::$tableName . " WHERE id = {$id}";
+    public static function deleteById($id, $columns = 'deleted_at') {
+        $sql = "UPDATE " . static::$tableName . " SET " . $columns . "= NOW() WHERE id = {$id}";
         Database::executeSQL($sql);
     }
 

@@ -10,7 +10,8 @@ CREATE TABLE users (
     email VARCHAR(50) UNIQUE NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE,
-    is_admin BOOLEAN NOT NULL DEFAULT false
+    is_admin BOOLEAN NOT NULL DEFAULT false,
+    deleted_at DATE
 );
 CREATE TABLE working_hours (
     id INT(6) AUTO_INCREMENT PRIMARY KEY, 

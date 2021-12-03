@@ -23,7 +23,7 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
                 addSuccessMsg('Usuário Cadastrado com sucesso!!');
             }catch (Exception $e) {
                 if(strpos($e->getMessage(), "for key 'users.email'")) {
-                    addErrorMsg('E-mail já cadastrado');
+                    addErrorMsg('E-mail já cadastrado/indisponível');
                 } else {
                     $exception = $e;
                 }

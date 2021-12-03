@@ -9,18 +9,19 @@
 	<div>
 		<form class="mb-4" action="#" method="post">
 			<div class="input-group">
-				<?php if($user->is_admin): ?>
-					<select name="user" class="form-control me-2" placeholder="Selecione o usuário...">
-						<option value="">Selecione o usuário</option>
+				<?php if($user->is_admin){ ?>
+					<select name="user" class="form-control me-2">
 						<?php
 							foreach($users as $user) {
-								$selected = $user->id === $selectedUserId ? 'selected' : '';
-								echo "<option value='{$user->id}' {$selected}>{$user->name}</option>";
+								if(!$user->deleted_at) {
+									$selected = $user->id === $selectedUserId ? 'selected' : '';
+									echo "<option value='{$user->id}' {$selected}>{$user->name}</option>";
+								}
 							}
 						?>
 					</select>
-				<?php endif ?>
-				<select name="period" class="form-control" placeholder="Selecione o período...">
+				<?php } ?>
+				<select name="period" class="form-control">
 					<?php
 						foreach($periods as $key => $month) {
 							$selected = $key === $selectedPeriod ? 'selected' : '';
@@ -28,7 +29,7 @@
 						}
 					?>
 				</select>
-				<button class="btn btn-primary ml-2">
+				<button class="btn btn-primary ms-2">
 					<i class="icofont-search"></i>
 				</button>
 			</div>

@@ -113,6 +113,7 @@ class WorkingHours extends Model {
         $result = Database::getResultFromQuery("
             SELECT name FROM users
             WHERE end_date is NULL
+            AND deleted_at is NULL
             AND id NOT IN (
                 SELECT user_id FROM working_hours
                 WHERE work_date = '{$today->format('Y-m-d')}'
